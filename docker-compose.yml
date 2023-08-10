@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  devcontainer:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+    - "8080:8080"  
+    depends_on:
+    - 'mongo'
+  mongo:
+    image: 'mongo:latest'
+    container_name: 'mongo'
+    ports:
+    - '27100:27017'
+    volumes:
+    - ./data/dev/mongo:/data/db
